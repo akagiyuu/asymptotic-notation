@@ -28,10 +28,10 @@
 $O$-notation provides an asymptotic *upper bound*.
 #image("img/big-O.png", width: 10cm)
 #definition[
-    $O(g(n)) := { f(n): exists c, n_0 > 0 "such that" 0 <= f(n) <= c g(n)", " forall n >= n_0}$.
+    $ O(g(n)) := { f(n): exists c, n_0 > 0 "such that" 0 <= f(n) <= c g(n)", " forall n >= n_0} $
 ]
 #definition[
-    $f(n) := O(g(n)) arrow.l.r.double f(n) in O(g(n))$.
+    $ f(n) := O(g(n)) arrow.l.r.double f(n) in O(g(n)) $
 ]
 #example[
     $ln(n) = O(n)$
@@ -41,10 +41,10 @@ $O$-notation provides an asymptotic *upper bound*.
 $Omega$-notation provides an asymptotic *lower bound*.
 #image("img/big-Omega.png", width: 10cm)
 #definition[
-    $Omega(g(n)) := { f(n): exists c, n_0 > 0 "such that" 0 <= c g(n) <= f(n)", " forall n >= n_0}$.
+    $ Omega(g(n)) := { f(n): exists c, n_0 > 0 "such that" 0 <= c g(n) <= f(n)", " forall n >= n_0} $
 ]
 #definition[
-    $f(n) := Omega(g(n)) arrow.l.r.double f(n) in Omega(g(n))$.
+    $ f(n) := Omega(g(n)) arrow.l.r.double f(n) in Omega(g(n)) $
 ]
 #example[
     $n^2 + n = Omega(n^2)$
@@ -54,10 +54,10 @@ $Omega$-notation provides an asymptotic *lower bound*.
 $Theta$-notation provides an asymptotic *tight bound*.
 #image("img/Theta.png", width: 10cm)
 #definition[
-    $Theta(g(n)) := { f(n): exists c_1, c_2, n_0 > 0 "such that" 0 <= c_1 g(n) <= f(n) <= c_2 g(n)", " forall n >= n_0}$.
+    $ Theta(g(n)) := { f(n): exists c_1, c_2, n_0 > 0 "such that" 0 <= c_1 g(n) <= f(n) <= c_2 g(n)", " forall n >= n_0} $
 ]
 #definition[
-    $f(n) := Theta(g(n)) arrow.l.r.double f(n) in Theta(g(n))$.
+    $ f(n) := Theta(g(n)) arrow.l.r.double f(n) in Theta(g(n)) $
 ]
 #example[
     $Theta(n^2) = n^2$
@@ -66,7 +66,7 @@ $Theta$-notation provides an asymptotic *tight bound*.
 == Little o notation ($o$-notation)
 $o$-notation denotes an *upper bound* that is *not asymptotically tight*
 #definition[
-    $o(g(n)) := { f(n): forall epsilon > 0: exists n_0 > 0 "such that" 0 <= f(n) < epsilon g(n)", " forall n >= n_0 }$.
+    $ o(g(n)) := { f(n): forall epsilon > 0: exists n_0 > 0 "such that" 0 <= f(n) < epsilon g(n)", " forall n >= n_0 } $
 ]
 #proposition[
     $
@@ -74,7 +74,7 @@ $o$-notation denotes an *upper bound* that is *not asymptotically tight*
     $
 ]
 #definition[
-    $f(n) := o(g(n)) arrow.l.r.double f(n) in o(g(n))$.
+    $ f(n) := o(g(n)) arrow.l.r.double f(n) in o(g(n)) $
 ]
 #example[
     $ln(n) = o(n)$
@@ -83,10 +83,10 @@ $o$-notation denotes an *upper bound* that is *not asymptotically tight*
 == Little omega notation ($omega$-notation)
 $omega$-notation denotes an *lower bound* that is *not asymptotically tight*
 #definition[
-    $omega(g(n)) := { f(n): forall epsilon > 0: exists n_0 > 0 "such that" 0 <= epsilon g(n) < f(n)", " forall n >= n_0 }$.
+    $ omega(g(n)) := { f(n): forall epsilon > 0: exists n_0 > 0 "such that" 0 <= epsilon g(n) < f(n)", " forall n >= n_0 } $
 ]
 #definition[
-    $f(n) := omega(g(n)) arrow.l.r.double f(n) in omega(g(n))$.
+    $ f(n) := omega(g(n)) arrow.l.r.double f(n) in omega(g(n)) $
 ]
 #proposition[
     $
@@ -127,12 +127,12 @@ $f(n) = Theta(g(n)) arrow.l.r.double g(n) = Theta(f(n))$
 
 = Common types of asymptotic bound
 #block[$ \
-        & p(n) = sum_(k=0)^(d) a_k n^k", " forall k >= 0: a_k > 0\
-        & => p(n) = O(n^k)", " forall k >= d \
-        & => p(n) = Omega(n^k)", " forall k <= d \
-        & => p(n) = Theta(n^k)"if " k = d \
-        & => p(n) = o(n^k)", " forall k > d \
-        & => p(n) = omega(n^k)", " forall k < d $]
+        & p(n) := sum_(k=0)^(d) a_k n^k", " forall k >= 0: a_k > 0\
+        & "1. " p(n) = O(n^k)", " forall k >= d \
+        & "2. " p(n) = Omega(n^k)", " forall k <= d \
+        & "3. " p(n) = Theta(n^k)"if " k = d \
+        & "4. " p(n) = o(n^k)", " forall k > d \
+        & "5. " p(n) = omega(n^k)", " forall k < d $]
 #block[$ \
         & n! = sqrt(2 pi n) (n/e)^n (1 + Theta(1/n)) \
         & log(n!) = Theta(n log(n)) $]
@@ -142,33 +142,37 @@ $f(n) = Theta(g(n)) arrow.l.r.double g(n) = Theta(f(n))$
 = Methods for proving asymptotic bounds
 == Using definitions
 #example[
-    #block[$ \
-            &ln(n) <= n ", " forall n >= 1 " " (c = 1", " n_0 = 1)\
-            &=> ln(n) = O(n) $]
+    $
+        ln(n) <= n ", " forall n >= 1 " " (c = 1", " n_0 = 1)\
+        => ln(n) = O(n)
+    $
 ]
 #example[
-    #block[$ \
-            &0 <= n^2 <= n^2 + n ", " forall n >= 1 " " (c = 1", " n_0 = 1) \
-            &=> n^2 + n = Omega(n^2) $]
+    $
+        0 <= n^2 <= n^2 + n ", " forall n >= 1 " " (c = 1", " n_0 = 1) \
+        => n^2 + n = Omega(n^2)
+    $
 ]
 #example[
-    #block[$ \
-            &0 <= n^2 <= n^2 + n <= 2 n^2", " forall n >= 1 " " (c_1 = 1", " c_2 = 2", " n_0 = 1)\
-            &=> Theta(n^2) = n^2 $]
+    $
+        0 <= n^2 <= n^2 + n <= 2 n^2", " forall n >= 1 " " (c_1 = 1", " c_2 = 2", " n_0 = 1)\
+        => Theta(n^2) = n^2
+    $
 ]
 #example[
-    #block[$
-            cases(
-                reverse: #true, ln(n) >= 0", " forall n >= 1, lim_(n arrow infinity) ln(n)/n = lim_(n -> infinity) 1/n = 0,
+    $
+        cases(
+            reverse: #true, ln(n) >= 0", " forall n >= 1, lim_(n arrow infinity) ln(n)/n = lim_(n -> infinity) 1/n = 0,
 
-            )
-            => ln(n) = o(n)
-        $]
+        )
+        => ln(n) = o(n)
+    $
 ]
 #example[
-    #block[$ \
-            &forall epsilon > 0: 0 <= epsilon n < n^2 ", " forall n >= epsilon + 1 " " (n_0 = epsilon + 1)\
-            &=> n^2 = omega(n) $]
+    $
+        forall epsilon > 0: 0 <= epsilon n < n^2 ", " forall n >= epsilon + 1 " " (n_0 = epsilon + 1)\
+        => n^2 = omega(n)
+    $
 ]
 == Substitution method
 The substitution method comprises two steps:
@@ -197,19 +201,17 @@ good guess.
         So we will make a guess: $T(n) = O(log(n))$
     ]
     #block(inset: (x: 1.2em))[
-        $c := max{T(2), T(3), d}$\
-        Assume: $T(n) <= c log(n) ", " forall n: k > n$ \
-        #block(inset: (x: 0em))[
-            $
-                T(k) &= T(floor(k/2)) + d \
-                     &<= c log(floor(k/2)) + d \
-                     &<= c log(k/2) + d \
-                     &<= c log(k) - c + d \
-                     &<= c log(k)" (1)"
-            $
-        ] \
+        Define $c := max{T(2), T(3), d}$\
+        Assume $T(n) <= c log(n) ", " forall n: k > n$ \
+        $
+            T(k) &= T(floor(k/2)) + d \
+                 &<= c log(floor(k/2)) + d \
+                 &<= c log(k/2) + d \
+                 &<= c log(k) - c + d \
+                 &<= c log(k)" (1)"
+        $ \
         $ T(n) <= c log(n) forall n: 4 > n >= 2 " (2)" $\
-        (1), (2) $ => T(n) = O(log(n))$
+        From (1), (2) $ => T(n) = O(log(n))$
     ]
 ]
 == Master theorem
@@ -262,7 +264,7 @@ good guess.
     $
         (1/2) ^ 1 + (1/3) ^ 1 + (1/6) ^1 = 1 " (3)"
     $
-    From (1), (2), and (3), we can apply <akra_bazzi_method> to get:
+    From (1), (2), and (3), we can apply @akra_bazzi_method to get:
     $
         T(x) &= Theta(x (1 + integral_1^x (u log(u))/(u^2) dif u)) \
              &= Theta(x (1 + integral_1^x log(u)/u dif u )) \
