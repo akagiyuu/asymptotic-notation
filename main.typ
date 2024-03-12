@@ -18,8 +18,16 @@
 #pagebreak()
 
 = What is asymptotic notation?
+In computer science and related disciplines, asymptotic notation describes the
+behavior of a function as its input size (often denoted by n) tends towards
+infinity. It focuses on the dominant terms that influence the function's growth
+rate, ignoring constant factors and lower-order terms.
 
 = Why use asymptotic notation?
+It allows researchers to compare and evaluate algorithms' efficiency without
+getting bogged down by specific hardware or implementation details. By focusing
+on asymptotic behavior, researchers can make general statements about how well
+algorithms scale with increasing input sizes.
 
 #pagebreak()
 
