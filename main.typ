@@ -1,5 +1,6 @@
 #import "@preview/ctheorems:1.1.2": *
 #show: thmrules.with(qed-symbol: $square$)
+#show figure.caption: emph
 
 #set text(size: 14pt)
 #set page(width: 20cm, height: auto, margin: 1.5cm)
@@ -26,7 +27,7 @@
 
 == Big O notation ($O$-notation)
 $O$-notation provides an asymptotic *upper bound*.
-#image("img/big-O.png", width: 10cm)
+#figure(image("img/big-O.png", width: 10cm), caption: $f(n) = O(g(n))$)
 #definition[
     $ O(g(n)) := { f(n): exists c, n_0 > 0 "such that" 0 <= f(n) <= c g(n)", " forall n >= n_0} $
 ]
@@ -39,7 +40,7 @@ $O$-notation provides an asymptotic *upper bound*.
 
 == Big Omega notation ($Omega$-notation)
 $Omega$-notation provides an asymptotic *lower bound*.
-#image("img/big-Omega.png", width: 10cm)
+#figure(image("img/big-Omega.png", width: 10cm), caption: $f(n) = Omega(g(n))$)
 #definition[
     $ Omega(g(n)) := { f(n): exists c, n_0 > 0 "such that" 0 <= c g(n) <= f(n)", " forall n >= n_0} $
 ]
@@ -52,7 +53,7 @@ $Omega$-notation provides an asymptotic *lower bound*.
 
 == Theta notation ($Theta$-notation)
 $Theta$-notation provides an asymptotic *tight bound*.
-#image("img/Theta.png", width: 10cm)
+#figure(image("img/Theta.png", width: 10cm), caption: $f(n) = Theta(g(n))$)
 #definition[
     $ Theta(g(n)) := { f(n): exists c_1, c_2, n_0 > 0 "such that" 0 <= c_1 g(n) <= f(n) <= c_2 g(n)", " forall n >= n_0} $
 ]
@@ -238,7 +239,7 @@ good guess.
 #example[
     Solve the recurrence for merge sort: $T(n) = 2T(n/2) + Theta(n)$ \ \
     We have $f(n) = Theta(n) = Theta(n^(log_2 2) log(n)^0)$, hence $T(n) = Theta(n^(log_2 2) log(n)^1) = Theta(n log(n))$ (according
-    to 2nd case of @master_theorem)
+    to $2^"nd"$ case of @master_theorem)
 ]
 == Akra-Bazzi method
 #theorem("Akra-Bazzi method")[ \
@@ -277,7 +278,64 @@ good guess.
 
 #pagebreak()
 
-= Finding asymptotic bound of a function in code
+= Finding asymptotic bound of an algorithm
+== Exact step-counting analysis
+The asymptotic bound of an algorithm can be calculated by following the steps
+below:
+- Break the program into smaller segments
+- Find the number of operations performed in each segment
+- Add up all the number of operations, call it T(n)
+- Find the asymptotic bound of T(n)
+
+#example[
+    Analyze insertion sort \ \
+    We have the following analysis: \
+    #figure(
+        image("img/insertion-sort.png", width: 15cm), caption: "Pseudo code for insertion sort with analysis",
+    )
+    #text(style: "italic")[where:]
+    #block(
+        inset: (x: 1.2em, y: 0em),
+    )[
+        - $c_k$ denotes the cost of $k^"th"$ line\
+        - $t_i$ denotes the number of times the while loop test in line 5 is executed for
+            given $i$
+    ] \ \
+
+    From the analysis, we can see that:
+    $
+        T(n) &= c_1 n + c_2 (n - 1) + c_4 (n - 1) + c_5 sum_(i = 2)^n t_i \
+             &" "" "" "+ c_6 sum_(i = 2)^n (t_i - 1) + c_7 sum_(i = 2)^n (t_i - 1) + c_8 (n - 1)
+    $ \ \
+    In the best case (when the array is already sorted), we have $t_i = 1$ for all $i$.
+    $
+        => T(n) &= c_1 n + c_2 (n - 1) + c_4 (n - 1) + c_5 sum_(i = 2)^n 1 \
+                &" "" "" "+ c_6 sum_(i = 2)^n (1 - 1) + c_7 sum_(i = 2)^n (1 - 1) + c_8 (n - 1) \
+                &= c_1 n + c_2 (n - 1) + c_4 (n - 1) + c_5 n + c_8 (n - 1) \
+                &= (c_1 + c_2 + c_4 + c_5 + c_8) n - c_2 - c_4 - c_8 \
+        => T(n) &= Omega(n)
+    $
+    \ \
+    In the worst case, we have $t_i = i$ for all $i$.
+    $
+        => T(n) &= c_1 n + c_2 (n - 1) + c_4 (n - 1) + c_5 sum_(i = 2)^n i \
+                &" "" "" "+ c_6 sum_(i = 2)^n (i - 1) + c_7 sum_(i = 2)^n (i - 1) + c_8 (n - 1) \
+                &= c_1 n + c_2 (n - 1) + c_4 (n - 1) + c_5 ((n (n + 1))/ 2 - 1) \
+                &" "" "" "+ c_6 (n (n - 1))/ 2 + c_7 (n (n - 1))/ 2 + c_8 (n - 1) \
+                &= (c_5/2 + c_6/2 + c_7/2) n^2 \
+                &" "" "" " + (c_1 + c_2 + c_4 + c_5 / 2 - c_6 / 2 - c_7 / 2 + c_8) n - c_2 - c_4 - c_5 - c_8 \
+        => T(n) &= O(n^2)
+    $ \ \
+
+    In conclusion, we have $T(n) = Omega(n)$ and $T(n) = O(n^2)$
+]
+
+== Recurrence relation
+#example[Calculate asymptotic bound of merge sort \ \
+    Define $T(n)$ as the running time of the algorithm. \
+    From the implementation of merge sort, we have: $T(n) = 2T(n/2) + Theta(n)$
+    Applying @master_theorem, we can conclude that $T(n) = Theta(n log(n))$ ($2^"nd"$ case
+    with $b = 2$, $a = 2$, $k = 0$) ]
 
 #pagebreak()
 
@@ -286,3 +344,4 @@ good guess.
 - https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)
 - https://en.wikipedia.org/wiki/Akra%E2%80%93Bazzi_method#Formulation
 - https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/b6c5cecb1804b69a6ad12245303f2af3_MIT6_042JF10_rec14_sol.pdf
+- https://www.geeksforgeeks.org/asymptotic-notations-and-how-to-calculate-them/
