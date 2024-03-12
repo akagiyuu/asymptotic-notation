@@ -339,9 +339,34 @@ below:
 
 #pagebreak()
 
+= Asymptotic notation and running time
+When using asymptotic notation to characterize an algorithm's running time, make
+sure that the asymptotic notation used is as precise as possible without
+overstating which running time it applies to.
+#example[\
+    In average case, quick sort runs in $Theta(n log n)$, so it also runs in $O(n^k)", " forall k >= 2$ \
+    In the same way, merge sort's running time can be $O(n^l)", " forall l >= 2$ \ \
+    Take $k = 2$ and $l = 3$, it's intuitive to conclude that quick sort is faster
+    than merge sort for large enough $n$ since $n^2 < n^3$ \
+    However, they both have the same asymptotic behavior (both runs in $Theta(n log n)$)
+    \ \
+    The error occurs due to the inaccuracy of the asymptotic notation used to
+    compare 2 algorithms.] \
+Asymptotic notations only give a bound for the running time of an algorithm when
+n is large enough. Hence, comparing algorithms with asymptotic notation is only
+applicable for large enough n.
+#example[\
+    Linear search's running time is $Theta(n)$ and binary search's running time is $Theta(log n)$ so
+    one may attempt to conclude that binary search is faster than linear search for
+    all n, which is a *wrong* statement. \
+    Consider the following benchmark: ]
+
+#pagebreak()
+
 = References
 - https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/
 - https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)
-- https://en.wikipedia.org/wiki/Akra%E2%80%93Bazzi_method#Formulation
+- https://en.wikipedia.org/wiki/Akra%E2%80%93Bazzi_method
 - https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/b6c5cecb1804b69a6ad12245303f2af3_MIT6_042JF10_rec14_sol.pdf
 - https://www.geeksforgeeks.org/asymptotic-notations-and-how-to-calculate-them/
+- https://www.geeksforgeeks.org/step-count-method-for-time-complexity-analysis/
