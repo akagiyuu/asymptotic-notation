@@ -17,6 +17,9 @@
 #align(center + horizon)[
     #text(size: 48pt, style: "italic", weight: 400)[
         Asymptotic Notation
+    ] \ \
+    #text(size: 18pt, style: "italic", weight: 400)[
+        Yuu
     ]
 ]
 
@@ -392,9 +395,9 @@ applicable for large enough n.
 #pagebreak()
 
 = References
-- https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/
-- https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)
-- https://en.wikipedia.org/wiki/Akra%E2%80%93Bazzi_method
-- https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/b6c5cecb1804b69a6ad12245303f2af3_MIT6_042JF10_rec14_sol.pdf
-- https://www.geeksforgeeks.org/asymptotic-notations-and-how-to-calculate-them/
-- https://www.geeksforgeeks.org/step-count-method-for-time-complexity-analysis/
+- #link("https://mitpress.mit.edu/9780262046305/introduction-to-algorithms/")
+- #link("https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)")
+- #link("https://en.wikipedia.org/wiki/Akra%E2%80%93Bazzi_method")
+- #link("https://ocw.mit.edu/courses/6-042j-mathematics-for-computer-science-fall-2010/b6c5cecb1804b69a6ad12245303f2af3_MIT6_042JF10_rec14_sol.pdf")
+- #link("https://www.geeksforgeeks.org/asymptotic-notations-and-how-to-calculate-them/")
+- #link("https://www.geeksforgeeks.org/step-count-method-for-time-complexity-analysis/")
