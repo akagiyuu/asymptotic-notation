@@ -1,9 +1,9 @@
 #import "@preview/ctheorems:1.1.2": *
 #show: thmrules.with(qed-symbol: $square$)
 #show figure.caption: emph
+#show link: underline
 
 #set text(size: 14pt)
-#set page(width: 20cm, height: auto, margin: 1.5cm)
 #set heading(numbering: "1.")
 
 #let theorem = thmbox("theorem", "Theorem", fill: rgb("#eeffee"))
@@ -14,16 +14,26 @@
 #let example = thmplain("example", "Example").with(numbering: none)
 #let proof = thmproof("proof", "Proof")
 
+#align(center + horizon)[
+    #text(size: 48pt, style: "italic", weight: 400)[
+        Asymptotic Notation
+    ]
+]
+
+#pagebreak()
+
+#set page(numbering: "1.")
 #outline(indent: auto)
 #pagebreak()
 
-= What is asymptotic notation?
+= Introduction
+== What is asymptotic notation?
 In computer science and related disciplines, asymptotic notation describes the
 behavior of a function as its input size (often denoted by n) tends towards
 infinity. It focuses on the dominant terms that influence the function's growth
 rate, ignoring constant factors and lower-order terms.
 
-= Why use asymptotic notation?
+== Why use asymptotic notation?
 It allows researchers to compare and evaluate algorithms' efficiency without
 getting bogged down by specific hardware or implementation details. By focusing
 on asymptotic behavior, researchers can make general statements about how well
@@ -364,10 +374,20 @@ Asymptotic notations only give a bound for the running time of an algorithm when
 n is large enough. Hence, comparing algorithms with asymptotic notation is only
 applicable for large enough n.
 #example[\
-    Linear search's running time is $Theta(n)$ and binary search's running time is $Theta(log n)$ so
-    one may attempt to conclude that binary search is faster than linear search for
-    all n, which is a *wrong* statement. \
-    Consider the following benchmark: ]
+    Merge sort's running time is $Theta(n log n)$ and selection sort's running time
+    is $Theta(n ^ 2)$ so one may attempt to conclude that merge sort is faster than
+    selection sort for all n, which is a *wrong* statement. \
+    Consider the following benchmark:
+    #figure(
+        image("img/sort.svg"), caption: [
+            Comparing running time of merge sort and selection sort. \
+            Source: #link("https://github.com/akagiyuu/benchmark/tree/master/sort")
+
+        ],
+    )
+    It's clear that selection sort is faster than merge sort for $n <= 60$ and merge
+    sort is faster than selection sort for $n >= 80$. \
+]
 
 #pagebreak()
 
