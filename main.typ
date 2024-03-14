@@ -146,8 +146,6 @@ $f(n) = Theta(g(n)) arrow.l.r.double g(n) = Theta(f(n))$
         & Theta(f(n)) + O(f(n)) = Theta(f(n)) \
         & Theta(f(n)) + Theta(g(n)) = Theta(f(n)+g(n)) \
         & Theta(f(n)) dot Theta(g(n)) = Theta(f(n) dot g(n)) $]
-
-= Common types of asymptotic bound
 #block[$ \
         & p(n) := sum_(k=0)^(d) a_k n^k", " forall k >= 0: a_k > 0\
         & "1. " p(n) = O(n^k)", " forall k >= d \
