@@ -19,13 +19,13 @@
         Asymptotic Notation
     ] \ \
     #text(size: 18pt, style: "italic", weight: 400)[
-        Yuu
+        \- Huỳnh Minh Khang -
     ]
 ]
 
 #pagebreak()
 
-#set page(numbering: "1.")
+#set page(numbering: "1")
 #outline(indent: auto)
 #pagebreak()
 
